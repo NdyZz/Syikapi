@@ -1,5 +1,4 @@
 __path = process.cwd()
-const path = require('path')
 require('dotenv').config()
 require("./settings");
 var express = require('express'),
