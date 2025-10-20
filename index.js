@@ -40,7 +40,7 @@ app.use(limiter);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayout);
-app.use(express.static("assets"))
+app.use(express.static(path.join(__dirname, "assets")))
 
 app.enable('trust proxy');
 app.set("json spaces",2)
