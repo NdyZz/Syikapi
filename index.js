@@ -1,4 +1,5 @@
 __path = process.cwd()
+const path = require("path")
 require('dotenv').config()
 require("./settings");
 var express = require('express'),
@@ -37,7 +38,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.set('view engine', 'ejs');
-app.set('views', __path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayout);
 app.use(express.static("assets"))
 
