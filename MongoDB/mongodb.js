@@ -12,4 +12,4 @@ function connectMongoDb() {
         console.log('Succes connect to MONGODB ✅');
     });
 };
-module.exports.connectMongoDb = connectMongoDb;
+module.exports = { mongoose, connectMongoDb }
