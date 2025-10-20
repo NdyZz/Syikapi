@@ -63,7 +63,7 @@ app.use(session({
     secret: global.ACTIVATION_TOKEN_SECRET || 'secret',
   }),
   cookie: {
-    secure: false, // true kalau pakai HTTPS
+    secure: true, // true kalau pakai HTTPS
     httpOnly: true,
     maxAge: 1000 * 60 * 60 * 24 // 1 hari
   }
