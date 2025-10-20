@@ -1,4 +1,5 @@
 __path = process.cwd()
+const path = require('path')
 require('dotenv').config()
 require("./settings");
 var express = require('express'),
@@ -40,7 +41,8 @@ app.use(limiter);
 
 app.set('view engine', 'ejs');
 app.use(expressLayout);
-app.use(express.static("assets"))
+app.use(express.static(path.join(__dirname, 'assets')))
+app.set('views', path.join(__dirname, 'views'));
 
 app.enable('trust proxy');
 app.set("json spaces",2)
