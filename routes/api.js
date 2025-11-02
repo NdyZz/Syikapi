@@ -1712,6 +1712,41 @@ router.get('/ai/deepimg', async (req, res, next) => {
     })
     limitAdd(apikey);
   })
+  router.get('/search/film', async (req, res, next) => {
+    var apikey = req.query.apikey
+    var text = req.query.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!text) return res.json({
+      status: false,
+      creator: `${creator}`,
+      message: "parameter 'query' is required."
+    })
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    await scr.film(text)
+    .then(data => {
+      var result = data;
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    })
+    .catch(e => {
+      console.log(e);
+      res.json(loghandler.error)
+    })
+    limitAdd(apikey);
+  })
   router.get('/search/searchstickers', async (req, res, next) => {
     var apikey = req.query.apikey
     var text = req.query.query
