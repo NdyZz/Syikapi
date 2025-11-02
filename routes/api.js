@@ -1715,11 +1715,12 @@ router.get('/ai/deepimg', async (req, res, next) => {
   router.get('/search/film', async (req, res, next) => {
     var apikey = req.query.apikey
     var text = req.query.query
+    var page = req.query.page
     if (!apikey) return res.json(loghandler.noapikey)
     if (!text) return res.json({
       status: false,
       creator: `${creator}`,
-      message: "parameter 'query' is required."
+      message: "parameter 'query' is required and 'page' is optional."
     })
     const check = await cekKey(apikey);
     if (!check) return res.status(403).send({
@@ -1732,7 +1733,7 @@ router.get('/ai/deepimg', async (req, res, next) => {
       status: 403,
       message: 'your limit has been exhausted, reset every 12 PM'
     });
-    await scr.film(text)
+    await scr.film(text, page)
     .then(data => {
       var result = data;
       res.json({
