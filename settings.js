@@ -240,6 +240,11 @@ global.restapi = {
       },
     ],
     search: [
+		{
+			name: "Seacrh Film",
+			required: "query & apikey",
+			url: "api/search/film?query=avengers+endgame&apikey="
+		},
       {
         name: "Search Pinterest",
         required: "query & apikey",
@@ -464,3 +469,4 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+
