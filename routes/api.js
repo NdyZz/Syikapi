@@ -3005,6 +3005,176 @@ router.get('/ai/deepimg', async (req, res, next) => {
     limitAdd(apikey);
   })
 
+  // 18+
+router.get('/bp/xvsearch', async (req, res, next) => {
+    var { apikey, query } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!query) return res.json(loghandler.notquery)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BPSearch.searchXVideos(query)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+router.get('/bp/xvdl', async (req, res, next) => {
+    var { apikey, url } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!url) return res.json(loghandler.noturl)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BpDL.XVideosDL(url)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+router.get('/bp/phubsearch', async (req, res, next) => {
+    var { apikey, query } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!query) return res.json(loghandler.notquery)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BPSearch.searchPornHub(query)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+router.get('/bp/phubdl', async (req, res, next) => {
+    var { apikey, url } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!url) return res.json(loghandler.noturl)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BpDL.pornHubDL(url)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+router.get('/bp/xhsearch', async (req, res, next) => {
+    var { apikey, query } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!query) return res.json(loghandler.notquery)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BPSearch.searchXHamster(query)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+router.get('/bp/xhdl', async (req, res, next) => {
+    var { apikey, url } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!url) return res.json(loghandler.noturl)
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BpDL.xHamsterDL(url)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+
   module.exports = router
 
   let file = require.resolve(__filename)
