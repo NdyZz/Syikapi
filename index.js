@@ -204,6 +204,17 @@ app.get('/anime', isAuthenticated, async(req, res) => {
     layout: 'viewsapi'
   });
 })
+app.get('/bp', isAuthenticated, async(req, res) => {
+  let getkey = await getApikey(req.user.id)
+  let { apikey, username } = getkey
+  res.render('viewsapi', {
+    apikey,
+    page: '18+',
+    restapi: global.restapi.bp,
+    layout: 'viewsapi'
+  });
+})
+
 
 app.use('/api', apirouter)
 app.use('/users', userrouter)
