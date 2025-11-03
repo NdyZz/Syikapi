@@ -460,7 +460,39 @@ global.restapi = {
         required: "url & apikey",
         url: "api/anime/getvidanime?url=&apikey="
       },
-    ]
+    ],
+	bp: [
+		{
+			name: "XVideos Search",
+			required: "query & apikey",
+			url: "api/bp/xvsearch?query=stepsis&apikey="
+		},
+		{
+			name: "PornHub Search",
+			required: "query & apikey",
+			url: "api/bp/phubsearch?query=stepsis&apikey="
+		},
+		{
+			name: "XHamster Search",
+			required: "query & apikey",
+			url: "api/bp/xhsearch?query=stepsis&apikey="
+		},
+		{
+			name: "XVideos Download",
+			required: "url & apikey",
+			url: "api/bp/xvdl?url=&apikey="
+		},
+		{
+			name: "PornHub Download",
+			required: "url & apikey",
+			url: "api/bp/phubdl?url=&apikey="
+		},
+		{
+			name: "XHamster Download",
+			required: "url & apikey",
+			url: "api/bp/xhdl?url=&apikey="
+		}
+	]
 }
 let file = require.resolve(__filename)
 fs.watchFile(file, () => {
@@ -469,4 +501,5 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+
 
