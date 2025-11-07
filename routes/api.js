@@ -2156,6 +2156,73 @@ router.get('/ai/deepimg', async (req, res, next) => {
     }
     limitAdd(apikey);
   })
+  router.get('/islam/islamai', async (req, res, next) => {
+    var { query, apikey } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!query) return res.json({
+      status: false,
+      creator: `${creator}`,
+      message: "parameter 'query' is required."
+    })
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.muslimai(query)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
+
+
+  // kristen
+  router.get('/kristen/bibleai', async (req, res, next) => {
+    var { query, apikey } = req.query
+    if (!apikey) return res.json(loghandler.noapikey)
+    if (!query) return res.json({
+      status: false,
+      creator: `${creator}`,
+      message: "parameter 'query' is required."
+    })
+    const check = await cekKey(apikey);
+    if (!check) return res.status(403).send({
+      status: 403,
+      message: `apikey ${apikey} not found, please register first! https://${req.hostname}/users/signup`,
+      result: "error"
+    });
+    let limit = await isLimit(apikey);
+    if (limit) return res.status(403).send({
+      status: 403,
+      message: 'your limit has been exhausted, reset every 12 PM'
+    });
+    try {
+      const result = await scr.BibleAI(query)
+      res.json({
+        status: true,
+        creator,
+        result
+      })
+    } catch (e) {
+      console.log(e);
+      res.json(loghandler.error)
+    }
+    limitAdd(apikey);
+  })
 
   // game
   router.get('/game/tebakgambar', async (req, res, next) => {
