@@ -2107,7 +2107,7 @@ router.get('/ai/deepimg', async (req, res, next) => {
       message: 'your limit has been exhausted, reset every 12 PM'
     });
     try {
-      const result = await scr.SurahQuran.getsurah(surah)
+      const result = await scr.SurahQuran.getSurah(surah)
       res.json({
         status: true,
         creator,
