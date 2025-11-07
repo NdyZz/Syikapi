@@ -262,6 +262,11 @@ global.restapi = {
       },
     ],
     islamic: [
+		{
+			name: 'Islam AI',
+			required: 'query & apikey',
+			url: "api/islam/islamai?query=apa+mukjisat+nabi+isa?&apikey="
+		},
       {
         name: "Tahlil",
         required: "apikey",
@@ -501,5 +506,6 @@ fs.watchFile(file, () => {
 	delete require.cache[file]
 	require(file)
 })
+
 
 
