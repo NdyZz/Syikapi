@@ -2063,11 +2063,6 @@ router.get('/ai/deepimg', async (req, res, next) => {
   router.get('/islam/listsurah', async (req, res, next) => {
     var { apikey } = req.query
     if (!apikey) return res.json(loghandler.noapikey)
-    if (!text) return res.json({
-      status: false,
-      creator: `${creator}`,
-      message: "parameter 'dari' and 'ke' is required."
-    })
     const check = await cekKey(apikey);
     if (!check) return res.status(403).send({
       status: 403,
